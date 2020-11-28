@@ -9,6 +9,8 @@ using System;
  * 3. <program-name> --help
  * It is desired that one set of command options are not used and mixed with other commands
  * (for example, -i and -v should not be used together in a command).
+ *
+ * Do not forget to add ArgParseCS library as a reference to this project.
  */
 namespace ArgParseExample
 {
