@@ -1,4 +1,4 @@
-![QScored Badge](qscored.com/badge/8f5650ce13ab0d085586410771923df728cdd3f2f183d0800e7c58db362c6918/rank/)
+![QScored Badge](https://qscored.com/badge/8f5650ce13ab0d085586410771923df728cdd3f2f183d0800e7c58db362c6918/rank/)
 # Command line argument parser for C\#
 If you have a complex set of arguments for a command line program in C\#, use this library to define your command options and conveniently access the specified parameters.
 
