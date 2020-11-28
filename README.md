@@ -6,7 +6,7 @@ The library defines individual command in an ```OptionSet```. Each ```OptionSet`
 Let us take an example where program name is ```myapp```. This application deals with three kinds of commands.
 ```
 1. myapp -v
-2. myapp -i \<param1\> -o \<param2\> -t
+2. myapp -i <param1> -o <param2> -t
 3. myapp --help
 ```
 In this example, each of the three commands represent ```OptionSet``` and command options (such as ```-i```) refer to ```Option```. One ```OptionSet``` may have multiple ```Options```.
