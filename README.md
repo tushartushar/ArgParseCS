@@ -38,3 +38,4 @@ argParse.AddOptionSet(optionSet3);
 ```
 
 Following screenshot captures the output of the above specification. The full example can be found in the ArgParseExample folder.
+![Screenshot](screenshot.PNG)
