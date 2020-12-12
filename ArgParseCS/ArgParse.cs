@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ArgParseCS
 {
-    public class ArgParse
+    public class ArgParse : IEnumerable<OptionSet>
     {
         readonly List<OptionSet> _optionSets = new List<OptionSet>();
-        public void AddOptionSet(OptionSet optionSet)
+        public void Add(OptionSet optionSet)
         {
             _optionSets.Add(optionSet);
         }
@@ -48,5 +49,14 @@ namespace ArgParseCS
             return null;
         }
 
+        public IEnumerator<OptionSet> GetEnumerator()
+        {
+            return _optionSets.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

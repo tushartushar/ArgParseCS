@@ -15,8 +15,8 @@ namespace ArgParseCSTests
             ArgParse argParse = new ArgParse();
             Option option = new Option("-a", "--add", "Add an option", true, true);
             OptionSet optionSet = new OptionSet("Single parameter");
-            optionSet.AddOption(option);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            argParse.Add(optionSet);
 
             Assert.AreEqual("Usage:\nSingle parameter:\n\t-a\t--add Value\t\tAdd an option\n", argParse.Usage());
         }
@@ -28,14 +28,27 @@ namespace ArgParseCSTests
             Option option = new Option("-a", "--add", "Add an option", true, true);
             Option option2 = new Option("-d", "--delete", "Delete an option", false, true);
             OptionSet optionSet = new OptionSet("Two parameters");
-            optionSet.AddOption(option);
-            optionSet.AddOption(option2);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            optionSet.Add(option2);
+            argParse.Add(optionSet);
 
             Assert.AreEqual("Usage:\nTwo parameters:\n\t-a\t--add Value\t\tAdd an option" +
                 "\n\t-d\t--delete Value\t\t[Optional] Delete an option\n", argParse.Usage());
         }
 
+        [Test]
+        public void ArgParse_Parse_EmptyArgs()
+        {
+            ArgParse argParse = new ArgParse()
+            {
+                new OptionSet("One parameter") {
+                new Option("-v", "--version", "Version of the application", true, false)
+                }
+            };
+
+            string[] args = {};
+            Assert.Throws<ArgumentException>(() => argParse.Parse(args));
+        }
 
         [Test]
         public void ArgParse_TwoOptionSetTwoOptions_Add_Success()
@@ -44,13 +57,13 @@ namespace ArgParseCSTests
             Option option = new Option("-a", "--add", "Add an option", true, true);
             Option option2 = new Option("-d", "--delete", "Delete an option", false, true);
             OptionSet optionSet = new OptionSet("Two parameters");
-            optionSet.AddOption(option);
-            optionSet.AddOption(option2);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            optionSet.Add(option2);
+            argParse.Add(optionSet);
             OptionSet optionSet2 = new OptionSet("One parameter");
             Option option3 = new Option("-v", "--version", "Version of the application", true, false);
-            optionSet2.AddOption(option3);
-            argParse.AddOptionSet(optionSet2);
+            optionSet2.Add(option3);
+            argParse.Add(optionSet2);
 
             Assert.AreEqual("Usage:\nTwo parameters:\n\t-a\t--add Value\t\t" +
                 "Add an option\n\t-d\t--delete Value\t\t[Optional] Delete an option\n" +
@@ -64,13 +77,13 @@ namespace ArgParseCSTests
             Option option = new Option("-a", "--add", "Add an option", true, true);
             Option option2 = new Option("-d", "--delete", "Delete an option", false, true);
             OptionSet optionSet = new OptionSet("Two parameters");
-            optionSet.AddOption(option);
-            optionSet.AddOption(option2);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            optionSet.Add(option2);
+            argParse.Add(optionSet);
             OptionSet optionSet2 = new OptionSet("One parameter");
             Option option3 = new Option("-v", "--version", "Version of the application", true, false);
-            optionSet2.AddOption(option3);
-            argParse.AddOptionSet(optionSet2);
+            optionSet2.Add(option3);
+            argParse.Add(optionSet2);
 
             string[] args = { "-a", "anOption" };
             argParse.Parse(args);
@@ -88,13 +101,13 @@ namespace ArgParseCSTests
             Option option = new Option("-a", "--add", "Add an option", true, true);
             Option option2 = new Option("-d", "--delete", "Delete an option", false, true);
             OptionSet optionSet = new OptionSet("Two parameters");
-            optionSet.AddOption(option);
-            optionSet.AddOption(option2);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            optionSet.Add(option2);
+            argParse.Add(optionSet);
             OptionSet optionSet2 = new OptionSet("One parameter");
             Option option3 = new Option("-v", "--version", "Version of the application", true, false);
-            optionSet2.AddOption(option3);
-            argParse.AddOptionSet(optionSet2);
+            optionSet2.Add(option3);
+            argParse.Add(optionSet2);
 
             string[] args = { "-a", "'anOption'" };
             argParse.Parse(args);
@@ -116,13 +129,13 @@ namespace ArgParseCSTests
             Option option = new Option("-a", "--add", "Add an option", true, true);
             Option option2 = new Option("-d", "--delete", "Delete an option", false, true);
             OptionSet optionSet = new OptionSet("Two parameters");
-            optionSet.AddOption(option);
-            optionSet.AddOption(option2);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            optionSet.Add(option2);
+            argParse.Add(optionSet);
             OptionSet optionSet2 = new OptionSet("One parameter");
             Option option3 = new Option("-v", "--version", "Version of the application", true, false);
-            optionSet2.AddOption(option3);
-            argParse.AddOptionSet(optionSet2);
+            optionSet2.Add(option3);
+            argParse.Add(optionSet2);
 
             string[] args = { "-a", "anOption", "--delete", "anotherOPtion" };
             argParse.Parse(args);
@@ -140,13 +153,13 @@ namespace ArgParseCSTests
             Option option = new Option("-a", "--add", "Add an option", true, true);
             Option option2 = new Option("-d", "--delete", "Delete an option", false, true);
             OptionSet optionSet = new OptionSet("Two parameters");
-            optionSet.AddOption(option);
-            optionSet.AddOption(option2);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            optionSet.Add(option2);
+            argParse.Add(optionSet);
             OptionSet optionSet2 = new OptionSet("One parameter");
             Option option3 = new Option("-v", "--version", "Version of the application", true, false);
-            optionSet2.AddOption(option3);
-            argParse.AddOptionSet(optionSet2);
+            optionSet2.Add(option3);
+            argParse.Add(optionSet2);
 
             string[] args2 = { "-v" };
             argParse.Parse(args2);
@@ -164,13 +177,13 @@ namespace ArgParseCSTests
             Option option = new Option("-a", "--add", "Add an option", true, true);
             Option option2 = new Option("-d", "--delete", "Delete an option", false, true);
             OptionSet optionSet = new OptionSet("Two parameters");
-            optionSet.AddOption(option);
-            optionSet.AddOption(option2);
-            argParse.AddOptionSet(optionSet);
+            optionSet.Add(option);
+            optionSet.Add(option2);
+            argParse.Add(optionSet);
             OptionSet optionSet2 = new OptionSet("One parameter");
             Option option3 = new Option("-v", "--version", "Version of the application", true, false);
-            optionSet2.AddOption(option3);
-            argParse.AddOptionSet(optionSet2);
+            optionSet2.Add(option3);
+            argParse.Add(optionSet2);
 
             string[] args2 = { "-d", "anOption" };
             Assert.Throws<ArgumentException>(() => argParse.Parse(args2));

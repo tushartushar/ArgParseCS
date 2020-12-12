@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ArgParseCS
 {
-    public class OptionSet
+    public class OptionSet: IEnumerable<Option>
     {
         readonly List<Option> _options = new List<Option>();
 
@@ -16,15 +17,25 @@ namespace ArgParseCS
         public string Name { get; set; }
         public bool IsActive { get; private set; }
 
-        public void AddOption(Option option)
+        public void Add(Option option)
         {
             _options.Add(option);
+        }
+
+        public IEnumerator<Option> GetEnumerator()
+        {
+            return _options.GetEnumerator();
         }
 
         public override string ToString()
         {
             string str = "\n" + Name + ":";
             return _options.Aggregate(str, (current, option) => current + ("\n" + option));
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         internal OptionMatch Parse(string[] args)
